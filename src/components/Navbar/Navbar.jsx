@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 //REDUCERS
 import { getCategories } from "../../features/navbar/navbarSlice";
 import { getCurrencies, openModal } from "../../features/modalCurrencies/modalCurrenciesSlice";
@@ -17,6 +17,7 @@ class Navbar extends Component {
 
   render() {
     const { categories, defaultCategory, currentCurrency, isOpen } = this.props;
+
     return (
       <>
         <nav>
@@ -83,7 +84,4 @@ const mapDispatchToProps = () => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps()
-)(props => <Navbar {...props} params={useParams()} />);
+export default connect(mapStateToProps, mapDispatchToProps())(Navbar);

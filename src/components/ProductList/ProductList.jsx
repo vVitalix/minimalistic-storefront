@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 //REDUCERS
-import { getProducts } from "../../features/productList/productListSlice";
+import { getProducts, clearProductListState } from "../../features/productList/productListSlice";
 //COMPONENTS
 import ProductCard from "../ProductCard";
 
@@ -22,9 +22,14 @@ class ProductList extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearProductListState();
+  }
+
   render() {
     const { defaultCategory, products } = this.props;
     const { categoryName } = this.props.params;
+
     return (
       <section>
         <h2>{categoryName ? categoryName : defaultCategory}</h2>
@@ -47,6 +52,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = () => {
   return {
     getProducts,
+    clearProductListState,
   };
 };
 

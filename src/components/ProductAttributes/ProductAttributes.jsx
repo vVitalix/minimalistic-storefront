@@ -1,76 +1,84 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 //REDUCERS
-import { setAttribute } from "../../features/productList/productListSlice";
+import { setAttributePlp } from "../../features/productList/productListSlice";
+import { setAttributePdp } from "../../features/product/productSlice";
 
 class ProductAttributes extends Component {
   render() {
-    const { id, attributes, selectedAttributes } = this.props;
+    const { id, attributes, selectedAttributes, setAttributeFromPlp } = this.props;
 
     return (
       <div>
-        {attributes.map(attribute =>
-          attribute.type === "swatch" ? (
-            <div key={attribute.id}>
-              <h6>{attribute.name}:</h6>
+        {attributes &&
+          attributes.map(attribute =>
+            attribute.type === "swatch" ? (
+              <div key={attribute.id}>
+                <h6>{attribute.name}:</h6>
 
-              <ul>
-                {attribute.items.map(item => (
-                  <li
-                    key={item.id}
-                    onClick={() => {
-                      this.props.setAttribute({ id, attribute, item });
-                    }}
-                    className={
-                      selectedAttributes.attributes.find(
-                        selectedAttribute =>
-                          selectedAttribute.items[0].id === item.id &&
-                          selectedAttribute.id === attribute.id
-                      )
-                        ? "selected"
-                        : ""
-                    }
-                    style={{
-                      backgroundColor: `${item.value}`,
-                      width: "2rem",
-                      height: "2rem",
-                    }}
-                  ></li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <div key={attribute.id}>
-              <h6>{attribute.name}:</h6>
+                <ul>
+                  {attribute.items.map(item => (
+                    <li
+                      key={item.id}
+                      onClick={() => {
+                        if (setAttributeFromPlp === "disabled") return;
+                        setAttributeFromPlp
+                          ? this.props.setAttributePlp({ id, attribute, item })
+                          : this.props.setAttributePdp({ id, attribute, item });
+                      }}
+                      className={
+                        selectedAttributes.attributes.find(
+                          selectedAttribute =>
+                            selectedAttribute.items[0].id === item.id &&
+                            selectedAttribute.id === attribute.id
+                        )
+                          ? "selected"
+                          : ""
+                      }
+                      style={{
+                        backgroundColor: `${item.value}`,
+                        width: "2rem",
+                        height: "2rem",
+                      }}
+                    ></li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <div key={attribute.id}>
+                <h6>{attribute.name}:</h6>
 
-              <ul>
-                {attribute.items.map(item => (
-                  <li
-                    key={item.id}
-                    onClick={() => {
-                      this.props.setAttribute({ id, attribute, item });
-                    }}
-                    className={
-                      selectedAttributes.attributes.find(
-                        selectedAttribute =>
-                          selectedAttribute.items[0].id === item.id &&
-                          selectedAttribute.id === attribute.id
-                      )
-                        ? "selected"
-                        : ""
-                    }
-                    style={{
-                      width: "63px",
-                      height: "45px",
-                    }}
-                  >
-                    {item.displayValue}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        )}
+                <ul>
+                  {attribute.items.map(item => (
+                    <li
+                      key={item.id}
+                      onClick={() => {
+                        if (setAttributeFromPlp === "disabled") return;
+                        setAttributeFromPlp
+                          ? this.props.setAttributePlp({ id, attribute, item })
+                          : this.props.setAttributePdp({ id, attribute, item });
+                      }}
+                      className={
+                        selectedAttributes.attributes.find(
+                          selectedAttribute =>
+                            selectedAttribute.items[0].id === item.id &&
+                            selectedAttribute.id === attribute.id
+                        )
+                          ? "selected"
+                          : ""
+                      }
+                      style={{
+                        width: "63px",
+                        height: "45px",
+                      }}
+                    >
+                      {item.displayValue}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          )}
       </div>
     );
   }
@@ -82,7 +90,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = () => {
   return {
-    setAttribute,
+    setAttributePlp,
+    setAttributePdp,
   };
 };
 

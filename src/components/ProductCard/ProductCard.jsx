@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 //REDUCERS
 import { addToCart } from "../../features/cart/cartSlice";
 //COMPONENTS
@@ -9,16 +10,19 @@ import ProductAttributes from "../ProductAttributes";
 class ProductCard extends Component {
   render() {
     const { id, name, brand, inStock, gallery, attributes, prices } = this.props.product;
-    const { currentCurrency, selectedAttributesList } = this.props;
+    const { product, selectedAttributesList, currentCurrency } = this.props;
     const currentPrice = prices.find(price => price.currency.label === currentCurrency.label);
     const selectedAttributes = selectedAttributesList.find(
       attributes => attributes.productId === id
     );
+
     return (
       <div className={inStock ? "" : "out-of-stock"}>
-        <div className="img-container">
-          <img width="354" src={gallery[0]} alt={name} />
-        </div>
+        <Link to={`/product/${id}`}>
+          <div className="img-container">
+            <img width="354" src={gallery[0]} alt={name} />
+          </div>
+        </Link>
 
         <div className="details-container">
           <h4 className="title">
@@ -33,10 +37,11 @@ class ProductCard extends Component {
           id={id}
           attributes={attributes}
           selectedAttributes={selectedAttributes}
+          setAttributeFromPlp={true}
         />
         <button
           onClick={() => {
-            this.props.addToCart({ selectedAttributes });
+            this.props.addToCart({ product, selectedAttributes });
           }}
         >
           <CartIcon />

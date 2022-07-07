@@ -42,7 +42,7 @@ const productListSlice = createSlice({
   name: "productList",
   initialState,
   reducers: {
-    setAttribute: (state, { payload }) => {
+    setAttributePlp: (state, { payload }) => {
       const selectedAttributes = state.selectedAttributesList.find(
         attributes => attributes.productId === payload.id
       );
@@ -50,6 +50,10 @@ const productListSlice = createSlice({
         attribute => attribute.id === payload.attribute.id
       );
       attribute.items[0] = payload.item;
+    },
+    clearProductListState: state => {
+      state.products = [];
+      state.selectedAttributesList = [];
     },
   },
   extraReducers: {
@@ -79,6 +83,6 @@ const productListSlice = createSlice({
   },
 });
 
-export const { setAttribute } = productListSlice.actions;
+export const { setAttributePlp, clearProductListState } = productListSlice.actions;
 
 export default productListSlice.reducer;
