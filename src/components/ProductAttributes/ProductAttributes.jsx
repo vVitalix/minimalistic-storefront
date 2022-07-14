@@ -24,7 +24,7 @@ class ProductAttributes extends Component {
                         if (setAttributeFromPlp === "disabled") return;
                         setAttributeFromPlp
                           ? this.props.setAttributePlp({ id, attribute, item })
-                          : this.props.setAttributePdp({ id, attribute, item });
+                          : this.props.setAttributePdp({ attribute, item });
                       }}
                       className={
                         selectedAttributes.attributes.find(
@@ -56,7 +56,7 @@ class ProductAttributes extends Component {
                         if (setAttributeFromPlp === "disabled") return;
                         setAttributeFromPlp
                           ? this.props.setAttributePlp({ id, attribute, item })
-                          : this.props.setAttributePdp({ id, attribute, item });
+                          : this.props.setAttributePdp({ attribute, item });
                       }}
                       className={
                         selectedAttributes.attributes.find(

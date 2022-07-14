@@ -27,10 +27,10 @@ const modalCurrenciesSlice = createSlice({
   name: "modalCurrencies",
   initialState,
   reducers: {
-    openModal: state => {
+    openModalCurrencies: state => {
       state.isOpen = true;
     },
-    closeModal: state => {
+    closeModalCurrencies: state => {
       state.isOpen = false;
     },
     setCurrency: (state, { payload }) => {
@@ -53,6 +53,7 @@ const modalCurrenciesSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal, setCurrency } = modalCurrenciesSlice.actions;
+export const { openModalCurrencies, closeModalCurrencies, setCurrency } =
+  modalCurrenciesSlice.actions;
 
 export default modalCurrenciesSlice.reducer;

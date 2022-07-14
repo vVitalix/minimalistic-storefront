@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+//REDUCERS
+import { increase, decrease, removeItem } from "../../features/cart/cartSlice";
 //COMPONENTS
 import ProductAttributes from "../ProductAttributes";
+import Gallery from "./Gallery";
+import { PlusSquareIcon, MinusSquareIcon } from "../Icons/ShoppingCartIcons";
 
 class CartItem extends Component {
   render() {
@@ -14,9 +18,10 @@ class CartItem extends Component {
     return (
       <div>
         <div className="details-container">
-          <h4 className="title">
-            {brand} {name}
-          </h4>
+          <Link to={`/product/${selectedAttributes.productId}`}>
+            <h4 className="title">{brand}</h4>
+            <h5 className="title">{name}</h5>
+          </Link>
           <p className="price">
             {currentPrice && currentPrice.currency.symbol}
             {currentPrice && currentPrice.amount.toFixed(2)}
@@ -28,12 +33,24 @@ class CartItem extends Component {
           selectedAttributes={selectedAttributes}
           setAttributeFromPlp={"disabled"}
         />
-        <p>{qty}</p>
-        <Link to={`/product/${selectedAttributes.productId}`}>
-          <div className="img-container">
-            <img width="354" src={gallery[0]} alt={name} />
-          </div>
-        </Link>
+        <div>
+          <button onClick={() => this.props.increase({ id })}>
+            <PlusSquareIcon />
+          </button>
+          <p>{qty}</p>
+          <button
+            onClick={() => {
+              if (qty === 1) {
+                this.props.removeItem({ id });
+                return;
+              }
+              this.props.decrease({ id });
+            }}
+          >
+            <MinusSquareIcon />
+          </button>
+        </div>
+        <Gallery gallery={gallery} name={name} />
       </div>
     );
   }
@@ -45,7 +62,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = () => {
-  return {};
+  return { increase, decrease, removeItem };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(CartItem);

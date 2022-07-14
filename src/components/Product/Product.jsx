@@ -17,16 +17,28 @@ class Product extends Component {
     const { productId } = this.props.params;
 
     this.props.getSingleProduct(productId);
+
+    window.scrollTo(0, 0);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props.params;
+
+    if (productId !== prevProps.params.productId) {
+      this.props.getSingleProduct(productId);
+
+      window.scrollTo(0, 0);
+    }
   }
 
   componentWillUnmount() {
     this.props.clearProductState();
   }
+
   render() {
     const { id, name, brand, inStock, gallery, description, attributes, prices } =
       this.props.product;
-    const { product, selectedAttributes, mainImg, currentCurrency } = this.props;
-    const { productId } = this.props.params;
+    const { product, selectedAttributes, mainImgIndex, currentCurrency } = this.props;
     const currentPrice =
       prices && prices.find(price => price.currency.label === currentCurrency.label);
 
@@ -34,13 +46,13 @@ class Product extends Component {
       <div>
         <div className="images-container">
           <div className="main-img-container">
-            <img width="400" src={mainImg} alt={name} />
+            <img width="400" src={gallery && gallery[mainImgIndex]} alt={`${name} main img`} />
           </div>
           <div className="small-imgages-container">
             {gallery &&
               gallery.map((img, index) => (
-                <div key={index} onClick={() => this.props.setMainImg({ img })}>
-                  <img width="200" src={img} alt="small img" />
+                <div key={index} onClick={() => this.props.setMainImg({ index })}>
+                  <img width="200" src={img} alt={`${name} small img`} />
                 </div>
               ))}
           </div>
@@ -74,9 +86,9 @@ class Product extends Component {
 }
 
 const mapStateToProps = state => {
-  const { product, selectedAttributes, mainImg } = state.product;
+  const { product, selectedAttributes, mainImgIndex } = state.product;
   const { currentCurrency } = state.modalCurrencies;
-  return { product, selectedAttributes, mainImg, currentCurrency };
+  return { product, selectedAttributes, mainImgIndex, currentCurrency };
 };
 
 const mapDispatchToProps = () => {

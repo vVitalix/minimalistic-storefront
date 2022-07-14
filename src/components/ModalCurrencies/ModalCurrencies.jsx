@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 //REDUCERS
 import {
   setCurrency,
-  closeModal,
+  closeModalCurrencies,
 } from "../../features/modalCurrencies/modalCurrenciesSlice";
 
 class ModalCurrencies extends Component {
@@ -17,7 +17,7 @@ class ModalCurrencies extends Component {
               key={currency.label}
               onClick={() => {
                 this.props.setCurrency(currency);
-                this.props.closeModal();
+                this.props.closeModalCurrencies();
               }}
             >
               {currency.symbol} {currency.label}
@@ -37,7 +37,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = () => {
   return {
     setCurrency,
-    closeModal,
+    closeModalCurrencies,
   };
 };
 

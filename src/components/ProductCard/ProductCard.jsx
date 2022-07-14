@@ -20,7 +20,7 @@ class ProductCard extends Component {
       <div className={inStock ? "" : "out-of-stock"}>
         <Link to={`/product/${id}`}>
           <div className="img-container">
-            <img width="354" src={gallery[0]} alt={name} />
+            <img width="354" src={gallery[0]} alt={`${name} cover img`} />
           </div>
         </Link>
 

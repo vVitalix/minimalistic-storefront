@@ -26,3 +26,37 @@ li {
 a {
   text-decoration: none;
 }
+
+.gallery-container {
+}
+
+.gallery {
+  position: relative;
+  display: flex;
+  height: 288px;
+  width: 200px;
+  overflow: hidden;
+}
+
+.gallery .img-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 250ms all ease-in-out;
+}
+
+.gallery .currentSlide {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.previousSlide {
+  transform: translateX(-100%);
+}
+
+.nextSlide {
+  transform: translateX(100%);
+}

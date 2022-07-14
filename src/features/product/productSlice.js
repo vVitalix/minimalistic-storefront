@@ -22,7 +22,7 @@ const getQuery = productId => {
 const initialState = {
   product: {},
   selectedAttributes: {},
-  mainImg: "",
+  mainImgIndex: 0,
   productIsLoading: false,
 };
 
@@ -49,12 +49,12 @@ const productSlice = createSlice({
       attribute.items[0] = payload.item;
     },
     setMainImg: (state, { payload }) => {
-      state.mainImg = payload.img;
+      state.mainImgIndex = payload.index;
     },
     clearProductState: state => {
       state.product = {};
       state.selectedAttributes = {};
-      state.mainImg = "";
+      state.mainImgIndex = 0;
     },
   },
   extraReducers: {
@@ -64,7 +64,7 @@ const productSlice = createSlice({
     [getSingleProduct.fulfilled]: (state, { payload }) => {
       state.productIsLoading = false;
       state.product = payload.product;
-      state.mainImg = payload.product.gallery[0];
+      state.mainImgIndex = 0;
 
       const productId = payload.product.id;
       const attributes = payload.product.attributes.map(attribute => {

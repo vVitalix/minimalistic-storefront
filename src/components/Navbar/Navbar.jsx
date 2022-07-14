@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 //REDUCERS
 import { getCategories } from "../../features/navbar/navbarSlice";
-import { getCurrencies, openModal } from "../../features/modalCurrencies/modalCurrenciesSlice";
+import {
+  getCurrencies,
+  openModalCurrencies,
+} from "../../features/modalCurrencies/modalCurrenciesSlice";
+import { openMiniCart } from "../../features/cart/cartSlice";
 import { getProducts } from "../../features/productList/productListSlice";
 //COMPONENTS
 import { LogoIcon, CartIcon, ChevronDownIcon } from "../Icons/NavbarIcons";
@@ -16,7 +20,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { categories, defaultCategory, currentCurrency, isOpen } = this.props;
+    const { categories, defaultCategory, currentCurrency, isOpen, quantity } = this.props;
 
     return (
       <>
@@ -47,7 +51,7 @@ class Navbar extends Component {
               <div className="currency-container">
                 <div
                   onClick={() => {
-                    this.props.openModal();
+                    this.props.openModalCurrencies();
                   }}
                 >
                   <p>{currentCurrency.symbol}</p>
@@ -55,10 +59,15 @@ class Navbar extends Component {
                 </div>
                 {isOpen && <ModalCurrencies />}
               </div>
-              <div className="cart-container">
+              <div
+                onClick={() => {
+                  this.props.openMiniCart();
+                }}
+                className="cart-container"
+              >
                 <CartIcon />
-                <div className="amount-container">
-                  <p className="total-amount">5</p>
+                <div className="quantity">
+                  <p>{quantity}</p>
                 </div>
               </div>
             </div>
@@ -72,7 +81,8 @@ class Navbar extends Component {
 const mapStateToProps = state => {
   const { categories, defaultCategory } = state.navbar;
   const { currentCurrency, isOpen } = state.modalCurrencies;
-  return { categories, defaultCategory, currentCurrency, isOpen };
+  const { quantity } = state.cart;
+  return { categories, defaultCategory, currentCurrency, isOpen, quantity };
 };
 
 const mapDispatchToProps = () => {
@@ -80,7 +90,8 @@ const mapDispatchToProps = () => {
     getCategories,
     getCurrencies,
     getProducts,
-    openModal,
+    openModalCurrencies,
+    openMiniCart,
   };
 };
 
