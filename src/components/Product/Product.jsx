@@ -44,42 +44,46 @@ class Product extends Component {
 
     return (
       <div>
-        <div className="images-container">
-          <div className="main-img-container">
-            <img width="400" src={gallery && gallery[mainImgIndex]} alt={`${name} main img`} />
-          </div>
-          <div className="small-imgages-container">
-            {gallery &&
-              gallery.map((img, index) => (
-                <div key={index} onClick={() => this.props.setMainImg({ index })}>
-                  <img width="200" src={img} alt={`${name} small img`} />
-                </div>
-              ))}
+        <div className="gallery">
+          <div className="images-container">
+            <div className="main-img-container">
+              <img width="400" src={gallery && gallery[mainImgIndex]} alt={`${name} main img`} />
+            </div>
+            <div className="small-imgages-container">
+              {gallery &&
+                gallery.map((img, index) => (
+                  <div key={index} onClick={() => this.props.setMainImg({ index })}>
+                    <img width="200" src={img} alt={`${name} small img`} />
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
-        <div className="details-container">
-          <h4 className="title">
-            {brand} {name}
-          </h4>
+        <div>
+          <div className="title">
+            <h2>{brand}</h2>
+            <h3>{name}</h3>
+          </div>
+          <ProductAttributes
+            id={id}
+            attributes={attributes}
+            selectedAttributes={selectedAttributes}
+            setAttributeFromPlp={false}
+          />
+          <h5>price:</h5>
           <p className="price">
             {currentPrice && currentPrice.currency.symbol}
             {currentPrice && currentPrice.amount.toFixed(2)}
           </p>
+          <button
+            onClick={() => {
+              this.props.addToCart({ product, selectedAttributes });
+            }}
+          >
+            Add to Cart
+          </button>
+          <div className="description-container">{parse(`${description}`)}</div>
         </div>
-        <div>{parse(`${description}`)}</div>
-        <ProductAttributes
-          id={id}
-          attributes={attributes}
-          selectedAttributes={selectedAttributes}
-          setAttributeFromPlp={false}
-        />
-        <button
-          onClick={() => {
-            this.props.addToCart({ product, selectedAttributes });
-          }}
-        >
-          Add to Cart
-        </button>
       </div>
     );
   }

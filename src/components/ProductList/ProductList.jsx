@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { getProducts, clearProductListState } from "../../features/productList/productListSlice";
 //COMPONENTS
 import ProductCard from "../ProductCard";
+//STYLES
+import StyledProductList from "../styles/ProductList.styled";
 
 class ProductList extends Component {
   componentDidMount() {
@@ -31,14 +33,14 @@ class ProductList extends Component {
     const { categoryName } = this.props.params;
 
     return (
-      <section>
-        <h2>{categoryName ? categoryName : defaultCategory}</h2>
+      <StyledProductList>
+        <h1>{categoryName ? categoryName : defaultCategory}</h1>
         <div>
           {products.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-      </section>
+      </StyledProductList>
     );
   }
 }

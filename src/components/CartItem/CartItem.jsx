@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { increase, decrease, removeItem } from "../../features/cart/cartSlice";
 //COMPONENTS
 import ProductAttributes from "../ProductAttributes";
-import Gallery from "./Gallery";
+import GalleryCarousel from "./GalleryCarousel";
 import { PlusSquareIcon, MinusSquareIcon } from "../Icons/ShoppingCartIcons";
 
 class CartItem extends Component {
@@ -18,10 +18,12 @@ class CartItem extends Component {
     return (
       <div>
         <div className="details-container">
-          <Link to={`/product/${selectedAttributes.productId}`}>
-            <h4 className="title">{brand}</h4>
-            <h5 className="title">{name}</h5>
-          </Link>
+          <div className="title">
+            <Link to={`/product/${selectedAttributes.productId}`}>
+              <h2>{brand}</h2>
+              <h3>{name}</h3>
+            </Link>
+          </div>
           <p className="price">
             {currentPrice && currentPrice.currency.symbol}
             {currentPrice && currentPrice.amount.toFixed(2)}
@@ -50,7 +52,7 @@ class CartItem extends Component {
             <MinusSquareIcon />
           </button>
         </div>
-        <Gallery gallery={gallery} name={name} />
+        <GalleryCarousel gallery={gallery} name={name} />
       </div>
     );
   }

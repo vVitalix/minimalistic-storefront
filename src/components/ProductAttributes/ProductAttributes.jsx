@@ -14,7 +14,7 @@ class ProductAttributes extends Component {
           attributes.map(attribute =>
             attribute.type === "swatch" ? (
               <div key={attribute.id}>
-                <h6>{attribute.name}:</h6>
+                <h5>{attribute.name}:</h5>
 
                 <ul>
                   {attribute.items.map(item => (
@@ -35,18 +35,19 @@ class ProductAttributes extends Component {
                           ? "selected"
                           : ""
                       }
-                      style={{
-                        backgroundColor: `${item.value}`,
-                        width: "2rem",
-                        height: "2rem",
-                      }}
-                    ></li>
+                    >
+                      <div
+                        style={{
+                          backgroundColor: `${item.value}`,
+                        }}
+                      ></div>
+                    </li>
                   ))}
                 </ul>
               </div>
             ) : (
               <div key={attribute.id}>
-                <h6>{attribute.name}:</h6>
+                <h5>{attribute.name}:</h5>
 
                 <ul>
                   {attribute.items.map(item => (
@@ -67,12 +68,8 @@ class ProductAttributes extends Component {
                           ? "selected"
                           : ""
                       }
-                      style={{
-                        width: "63px",
-                        height: "45px",
-                      }}
                     >
-                      {item.displayValue}
+                      <span>{item.value}</span>
                     </li>
                   ))}
                 </ul>

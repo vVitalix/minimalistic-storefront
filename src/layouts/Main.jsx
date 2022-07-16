@@ -7,7 +7,7 @@ import { calculateTotals } from "../features/cart/cartSlice";
 import Navbar from "../components/Navbar";
 import MiniCart from "../components/MiniCart";
 
-import "../index.css";
+// import "../index.css";
 
 class Main extends Component {
   componentDidUpdate(prevProps) {

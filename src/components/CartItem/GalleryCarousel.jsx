@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //COMPONENTS
 import { ChevronLeftIcon, ChevronRightIcon } from "../Icons/ShoppingCartIcons";
 
-class Gallery extends Component {
+class GalleryCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,8 +28,8 @@ class Gallery extends Component {
     const { gallery, name } = this.props;
 
     return (
-      <div className="gallery-container">
-        <div className="gallery">
+      <div className="gallery-carousel-container">
+        <div className="gallery-carousel">
           {gallery.map((img, imgIndex) => {
             let position = "nextSlide";
 
@@ -52,7 +52,7 @@ class Gallery extends Component {
         </div>
 
         {gallery.length > 1 && (
-          <div className="gallery-controls">
+          <div className="gallery-carousel-controls">
             <button onClick={() => this.setState({ index: this.state.index - 1 })}>
               <ChevronLeftIcon />
             </button>
@@ -66,4 +66,4 @@ class Gallery extends Component {
   }
 }
 
-export default Gallery;
+export default GalleryCarousel;

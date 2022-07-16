@@ -6,6 +6,8 @@ import { addToCart } from "../../features/cart/cartSlice";
 //COMPONENTS
 import { CartIcon } from "../Icons/NavbarIcons";
 import ProductAttributes from "../ProductAttributes";
+//STYLES
+import StyledProductCard from "../styles/ProductCard.styled";
 
 class ProductCard extends Component {
   render() {
@@ -17,17 +19,18 @@ class ProductCard extends Component {
     );
 
     return (
-      <div className={inStock ? "" : "out-of-stock"}>
+      <StyledProductCard className={inStock ? "" : "out-of-stock"}>
         <Link to={`/product/${id}`}>
-          <div className="img-container">
-            <img width="354" src={gallery[0]} alt={`${name} cover img`} />
+          <div className="cover-img-container">
+            <img src={gallery[0]} alt={`${name} cover img`} />
           </div>
         </Link>
 
         <div className="details-container">
-          <h4 className="title">
-            {brand} {name}
-          </h4>
+          <div className="title">
+            <h3>{brand}</h3>
+            <h3>{name}</h3>
+          </div>
           <p className="price">
             {currentPrice && currentPrice.currency.symbol}
             {currentPrice && currentPrice.amount.toFixed(2)}
@@ -46,7 +49,7 @@ class ProductCard extends Component {
         >
           <CartIcon />
         </button>
-      </div>
+      </StyledProductCard>
     );
   }
 }
