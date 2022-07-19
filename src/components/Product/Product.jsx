@@ -69,8 +69,9 @@ class Product extends Component {
             attributes={attributes}
             selectedAttributes={selectedAttributes}
             setAttributeFromPlp={false}
+            disabled={!inStock}
           />
-          <h5>price:</h5>
+          <h5>Price:</h5>
           <p className="price">
             {currentPrice && currentPrice.currency.symbol}
             {currentPrice && currentPrice.amount.toFixed(2)}
@@ -80,7 +81,7 @@ class Product extends Component {
               this.props.addToCart({ product, selectedAttributes });
             }}
           >
-            Add to Cart
+            Add To Cart
           </button>
           <div className="description-container">{parse(`${description}`)}</div>
         </div>

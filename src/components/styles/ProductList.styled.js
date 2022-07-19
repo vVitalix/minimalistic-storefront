@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 const StyledProductList = styled.section`
-  min-height: 80vh;
-  padding: 0rem 6.25rem;
+  min-height: calc(100vh - 5rem);
+  padding: 5rem 6.25rem 0rem 6.25rem;
 
   & > h1 {
-    margin-top: 5rem;
+    text-transform: capitalize;
+    font-size: 2.625rem;
+    font-weight: 400;
+    line-height: 4.25rem;
   }
 
   & > div {

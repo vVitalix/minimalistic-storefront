@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 //REDUCERS
 import { addToCart } from "../../features/cart/cartSlice";
 //COMPONENTS
-import { CartIcon } from "../Icons/NavbarIcons";
 import ProductAttributes from "../ProductAttributes";
+import ProductDetails from "../ProductDetails";
+import { CartIcon } from "../Icons/NavbarIcons";
 //STYLES
 import StyledProductCard from "../styles/ProductCard.styled";
 
@@ -19,36 +20,44 @@ class ProductCard extends Component {
     );
 
     return (
-      <StyledProductCard className={inStock ? "" : "out-of-stock"}>
-        <Link to={`/product/${id}`}>
-          <div className="cover-img-container">
+      <StyledProductCard opacity={inStock ? 1 : 0.5} display={attributes.length ? "flex" : "none"}>
+        <div className="cover-img-container">
+          <Link to={`/product/${id}`}>
             <img src={gallery[0]} alt={`${name} cover img`} />
-          </div>
-        </Link>
+          </Link>
 
-        <div className="details-container">
-          <div className="title">
-            <h3>{brand}</h3>
-            <h3>{name}</h3>
-          </div>
-          <p className="price">
-            {currentPrice && currentPrice.currency.symbol}
-            {currentPrice && currentPrice.amount.toFixed(2)}
-          </p>
+          {inStock && (
+            <div className="card-attributes-container">
+              <ProductAttributes
+                id={id}
+                attributes={attributes}
+                selectedAttributes={selectedAttributes}
+                setAttributeFromPlp={true}
+                disabled={!inStock}
+              />
+            </div>
+          )}
+
+          {!inStock && <p className="out-of-stock">Out Of Stock</p>}
         </div>
-        <ProductAttributes
+
+        {inStock && (
+          <button
+            onClick={() => {
+              this.props.addToCart({ product, selectedAttributes });
+            }}
+          >
+            <CartIcon />
+          </button>
+        )}
+
+        <ProductDetails
           id={id}
-          attributes={attributes}
-          selectedAttributes={selectedAttributes}
-          setAttributeFromPlp={true}
+          name={name}
+          brand={brand}
+          inStock={inStock}
+          currentPrice={currentPrice}
         />
-        <button
-          onClick={() => {
-            this.props.addToCart({ product, selectedAttributes });
-          }}
-        >
-          <CartIcon />
-        </button>
       </StyledProductCard>
     );
   }

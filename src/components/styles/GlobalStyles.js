@@ -20,6 +20,7 @@ h5 {
 }
 
 a {
+  color: var(--color-black);
   text-decoration: none;
 }
 
@@ -40,7 +41,7 @@ font-family: 'Roboto', sans-serif;
 --color-green: #5ECE7B;
 --color-white: #FFFFFF;
 --color-black: #1D1F22;
---color-Grey: #8D8F9A;
+--color-grey: #8D8F9A;
 --color-lightGrey: #EEEEEE;
 --color-transparentBlack: rgba(0, 0, 0, 0.73);
 --color-transparentGrey: rgba(57, 55, 72, 0.22);
@@ -73,43 +74,10 @@ font-family: 'Roboto', sans-serif;
 
 }
 
-.selected {
-  border: 1px solid #5ece7b;
-}
-
-.out-of-stock {
-  background-color: palevioletred;
-}
 
 .active li {
   border-bottom: 1px solid #5ece7b;
   color: #5ece7b;
-}
-
-li {
-  /* display: flex; */
-  height: 36px;
-  width: 36px;
-  padding: 1px;
-  /* align-items: center;
-  justify-content: center; */
-}
-
-
-li > div {
-  height: 32px;
-  width: 32px;
-  cursor: pointer;
-}
-
-li > span:hover,
-li > div:hover {
-  outline: 1px solid #eeeeee;
-}
-
-.selected > div:hover {
-  outline: none;
-  /* cursor: auto; */
 }
 
 .gallery-carousel {

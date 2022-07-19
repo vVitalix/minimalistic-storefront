@@ -11,7 +11,7 @@ class Cart extends Component {
     return (
       <section>
         <div>
-          <h2>cart</h2>
+          <h1>cart</h1>
         </div>
         <div>
           {cartItems.map(cartItem => (

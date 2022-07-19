@@ -1,34 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 //REDUCERS
 import { increase, decrease, removeItem } from "../../features/cart/cartSlice";
 //COMPONENTS
 import ProductAttributes from "../ProductAttributes";
+import ProductDetails from "../ProductDetails";
 import GalleryCarousel from "./GalleryCarousel";
 import { PlusSquareIcon, MinusSquareIcon } from "../Icons/ShoppingCartIcons";
 
 class CartItem extends Component {
   render() {
-    const { name, brand, gallery, attributes, prices } = this.props.cartItem.product;
+    const { name, brand, inStock, gallery, attributes, prices } = this.props.cartItem.product;
     const { id, selectedAttributes, qty } = this.props.cartItem;
     const { currentCurrency } = this.props;
     const currentPrice = prices.find(price => price.currency.label === currentCurrency.label);
 
     return (
       <div>
-        <div className="details-container">
-          <div className="title">
-            <Link to={`/product/${selectedAttributes.productId}`}>
-              <h2>{brand}</h2>
-              <h3>{name}</h3>
-            </Link>
-          </div>
-          <p className="price">
-            {currentPrice && currentPrice.currency.symbol}
-            {currentPrice && currentPrice.amount.toFixed(2)}
-          </p>
-        </div>
+        <ProductDetails
+          id={selectedAttributes.productId}
+          name={name}
+          brand={brand}
+          inStock={inStock}
+          currentPrice={currentPrice}
+        />
         <ProductAttributes
           id={id}
           attributes={attributes}

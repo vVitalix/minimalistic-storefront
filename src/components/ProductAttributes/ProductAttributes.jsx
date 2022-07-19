@@ -3,25 +3,27 @@ import { connect } from "react-redux";
 //REDUCERS
 import { setAttributePlp } from "../../features/productList/productListSlice";
 import { setAttributePdp } from "../../features/product/productSlice";
+//STYLES
+import StyledProductAttributes from "../styles/ProductAttributes.styled";
 
 class ProductAttributes extends Component {
   render() {
-    const { id, attributes, selectedAttributes, setAttributeFromPlp } = this.props;
+    const { id, attributes, selectedAttributes, setAttributeFromPlp, disabled } = this.props;
 
     return (
-      <div>
+      <StyledProductAttributes className="product-attributes">
         {attributes &&
           attributes.map(attribute =>
             attribute.type === "swatch" ? (
               <div key={attribute.id}>
                 <h5>{attribute.name}:</h5>
 
-                <ul>
+                <ul className={attribute.type}>
                   {attribute.items.map(item => (
                     <li
                       key={item.id}
                       onClick={() => {
-                        if (setAttributeFromPlp === "disabled") return;
+                        if (disabled) return;
                         setAttributeFromPlp
                           ? this.props.setAttributePlp({ id, attribute, item })
                           : this.props.setAttributePdp({ attribute, item });
@@ -49,12 +51,12 @@ class ProductAttributes extends Component {
               <div key={attribute.id}>
                 <h5>{attribute.name}:</h5>
 
-                <ul>
+                <ul className={attribute.type}>
                   {attribute.items.map(item => (
                     <li
                       key={item.id}
                       onClick={() => {
-                        if (setAttributeFromPlp === "disabled") return;
+                        if (disabled) return;
                         setAttributeFromPlp
                           ? this.props.setAttributePlp({ id, attribute, item })
                           : this.props.setAttributePdp({ attribute, item });
@@ -76,7 +78,7 @@ class ProductAttributes extends Component {
               </div>
             )
           )}
-      </div>
+      </StyledProductAttributes>
     );
   }
 }
