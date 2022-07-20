@@ -11,9 +11,10 @@ import { openMiniCart } from "../../features/cart/cartSlice";
 import { getProducts } from "../../features/productList/productListSlice";
 //COMPONENTS
 import { LogoIcon, CartIcon, ChevronDownIcon } from "../Icons/NavbarIcons";
-import ModalCurrencies from "../ModalCurrencies";
+//STYLES
+import StyledHeader from "../styles/Header.styled";
 
-class Navbar extends Component {
+class Header extends Component {
   componentDidMount() {
     this.props.getCategories();
     this.props.getCurrencies();
@@ -23,22 +24,22 @@ class Navbar extends Component {
     const { categories, defaultCategory, currentCurrency, isOpen, quantity } = this.props;
 
     return (
-      <>
+      <StyledHeader rotate={isOpen ? "rotate(180deg)" : "rotate(0deg)"}>
         <nav>
-          <div className="nav-center">
-            <ul className="category-list">
-              {categories.map(category => {
-                return (
-                  <NavLink
-                    key={category.name}
-                    to={`category/${category.name}`}
-                    className={({ isActive }) => (isActive ? "category active" : "category")}
-                  >
-                    <li>{category.name}</li>
-                  </NavLink>
-                );
-              })}
-            </ul>
+          <ul className="category-list">
+            {categories.map(category => {
+              return (
+                <NavLink
+                  key={category.name}
+                  to={`category/${category.name}`}
+                  className={({ isActive }) => (isActive ? "category active" : "category")}
+                >
+                  <li>{category.name}</li>
+                </NavLink>
+              );
+            })}
+          </ul>
+          <div className="logo">
             <Link
               to="/"
               onClick={() => {
@@ -47,33 +48,33 @@ class Navbar extends Component {
             >
               <LogoIcon />
             </Link>
-            <div className="shopping-tools">
-              <div className="currency-container">
-                <div
-                  onClick={() => {
-                    this.props.openModalCurrencies();
-                  }}
-                >
-                  <p>{currentCurrency.symbol}</p>
-                  <ChevronDownIcon />
-                </div>
-                {isOpen && <ModalCurrencies />}
-              </div>
-              <div
-                onClick={() => {
-                  this.props.openMiniCart();
-                }}
-                className="cart-container"
-              >
-                <CartIcon />
+          </div>
+          <div className="shopping-tools">
+            <div
+              className="currency"
+              onClick={() => {
+                this.props.openModalCurrencies();
+              }}
+            >
+              <p>{currentCurrency.symbol}</p>
+              <ChevronDownIcon />
+            </div>
+            <div
+              className="cart"
+              onClick={() => {
+                this.props.openMiniCart();
+              }}
+            >
+              <CartIcon />
+              {quantity > 0 && (
                 <div className="quantity">
                   <p>{quantity}</p>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </nav>
-      </>
+      </StyledHeader>
     );
   }
 }
@@ -95,4 +96,4 @@ const mapDispatchToProps = () => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps())(Header);

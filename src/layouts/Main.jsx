@@ -4,10 +4,9 @@ import { Outlet } from "react-router-dom";
 //REDUCERS
 import { calculateTotals } from "../features/cart/cartSlice";
 //COMPONENTS
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
+import ModalCurrencies from "../components/ModalCurrencies";
 import MiniCart from "../components/MiniCart";
-
-// import "../index.css";
 
 class Main extends Component {
   componentDidUpdate(prevProps) {
@@ -19,11 +18,12 @@ class Main extends Component {
   }
 
   render() {
-    const { miniCartIsOpen } = this.props;
+    const { isOpen, miniCartIsOpen } = this.props;
 
     return (
       <div>
-        <Navbar />
+        <Header />
+        {isOpen && <ModalCurrencies />}
         {miniCartIsOpen && <MiniCart />}
         <Outlet />
       </div>
@@ -33,8 +33,8 @@ class Main extends Component {
 
 const mapStateToProps = state => {
   const { cartItems, miniCartIsOpen } = state.cart;
-  const { currentCurrency } = state.modalCurrencies;
-  return { cartItems, miniCartIsOpen, currentCurrency };
+  const { currentCurrency, isOpen } = state.modalCurrencies;
+  return { cartItems, miniCartIsOpen, currentCurrency, isOpen };
 };
 
 const mapDispatchToProps = () => {

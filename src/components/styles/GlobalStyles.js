@@ -33,7 +33,7 @@ li > span {
 }
 
 
-font-family: 'Roboto', sans-serif;
+
 
 
 
@@ -49,7 +49,7 @@ font-family: 'Roboto', sans-serif;
   
 
 
---color-UQred: red;
+/* --color-UQred: red;
 --color-lightBG: #f7f7f7;
 --color-fontOpaque: grey;
 --color-lightBorder: #f2f2f2;
@@ -70,15 +70,10 @@ font-family: 'Roboto', sans-serif;
 --height-header: 52px;
 --height-swatchDimension: 20px;
 --height-window: 100%;
---scroll-window: 0;
+--scroll-window: 0; */
 
 }
 
-
-.active li {
-  border-bottom: 1px solid #5ece7b;
-  color: #5ece7b;
-}
 
 .gallery-carousel {
   width: 12.5rem;

@@ -5,9 +5,9 @@ const FillerBox = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 5rem;
+  height: ${({ height }) => height};
   opacity: 0;
-  z-index: 10;
+  z-index: 20;
 `;
 
 export default FillerBox;

@@ -7,7 +7,7 @@ import { closeMiniCart } from "../../features/cart/cartSlice";
 import CartItem from "../CartItem";
 //STYLES
 import FillerBox from "../styles/FillerBox.styled";
-import CartOverlay from "../styles/CartOverlay.styled";
+import Overlay from "../styles/Overlay.styled";
 import StyledMiniCart from "../styles/MiniCart.styled";
 
 class MiniCart extends Component {
@@ -16,8 +16,12 @@ class MiniCart extends Component {
 
     return (
       <>
-        <FillerBox onClick={() => this.props.closeMiniCart()} />
-        <CartOverlay onClick={() => this.props.closeMiniCart()}>
+        <FillerBox onClick={() => this.props.closeMiniCart()} height={"5rem"} />
+        <Overlay
+          onClick={() => this.props.closeMiniCart()}
+          height={"5rem"}
+          background={"var(--color-transparentGrey)"}
+        >
           <StyledMiniCart onClick={e => e.stopPropagation()}>
             <div>
               <h2>My Bag,</h2>
@@ -44,7 +48,7 @@ class MiniCart extends Component {
               </Link>
             </div>
           </StyledMiniCart>
-        </CartOverlay>
+        </Overlay>
       </>
     );
   }

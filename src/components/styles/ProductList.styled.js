@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledProductList = styled.section`
   min-height: calc(100vh - 5rem);
+  margin-top: 5rem;
   padding: 5rem 6.25rem 0rem 6.25rem;
 
   & > h1 {
