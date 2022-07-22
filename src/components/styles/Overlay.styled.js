@@ -4,7 +4,7 @@ const Overlay = styled.div`
   position: fixed;
   top: ${({ height }) => height};
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: calc(100vh - ${({ height }) => height});
   background: ${({ background }) => background};
   display: flex;

@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 //COMPONENTS
 import CartItem from "../CartItem";
+//STYLES
+import StyledCart from "../styles/Cart.styled";
 
 class Cart extends Component {
   render() {
     const { cartItems, quantity, total, tax, currentCurrency } = this.props;
 
     return (
-      <section>
-        <div>
-          <h1>cart</h1>
-        </div>
-        <div>
+      <StyledCart>
+        <h1>Cart</h1>
+        <div className="cart-items">
           {cartItems.map(cartItem => (
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))}
@@ -31,19 +31,19 @@ class Cart extends Component {
             <p>{quantity}</p>
           </div>
           <div>
-            <h4>Total:</h4>
+            <h4 className="total">Total:</h4>
             <p>
               {currentCurrency.symbol}
               {total.toFixed(2)}
             </p>
           </div>
+          {cartItems.length > 0 && (
+            <Link to="/404">
+              <button>Order</button>
+            </Link>
+          )}
         </div>
-        <div>
-          <Link to="/404">
-            <button>order</button>
-          </Link>
-        </div>
-      </section>
+      </StyledCart>
     );
   }
 }

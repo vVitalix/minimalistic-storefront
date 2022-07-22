@@ -8,7 +8,8 @@ const StyledMiniCart = styled.section`
   background: var(--color-white);
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-width: thin;
 `;
 
 export default StyledMiniCart;

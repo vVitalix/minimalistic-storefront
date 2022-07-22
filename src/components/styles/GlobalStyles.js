@@ -13,6 +13,7 @@ body {
   background: var(--color-white);
   color: var(--color-black);
   font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
 }
 
 h5 {

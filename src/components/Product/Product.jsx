@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import parse from "html-react-parser";
 //REDUCERS
-import {
-  getSingleProduct,
-  clearProductState,
-  setMainImg,
-} from "../../features/product/productSlice";
+import { getSingleProduct, clearProductState } from "../../features/product/productSlice";
 import { addToCart } from "../../features/cart/cartSlice";
 //COMPONENTS
 import ProductAttributes from "../ProductAttributes";
+import Gallery from "./Gallery";
+import Title from "../ProductDetails/Title";
+import Price from "../ProductDetails/Price";
+//STYLES
+import StyledProduct from "../styles/Product.styled";
 
 class Product extends Component {
   componentDidMount() {
@@ -43,27 +44,10 @@ class Product extends Component {
       prices && prices.find(price => price.currency.label === currentCurrency.label);
 
     return (
-      <div>
-        <div className="gallery">
-          <div className="images-container">
-            <div className="main-img-container">
-              <img width="400" src={gallery && gallery[mainImgIndex]} alt={`${name} main img`} />
-            </div>
-            <div className="small-imgages-container">
-              {gallery &&
-                gallery.map((img, index) => (
-                  <div key={index} onClick={() => this.props.setMainImg({ index })}>
-                    <img width="200" src={img} alt={`${name} small img`} />
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="title">
-            <h2>{brand}</h2>
-            <h3>{name}</h3>
-          </div>
+      <StyledProduct cursor={inStock ? "pointer" : "default"} opacity={inStock ? 1 : 0.5}>
+        <Gallery name={name} gallery={gallery} mainImgIndex={mainImgIndex} />
+        <div className="info-container">
+          <Title name={name} brand={brand} inStock={inStock} />
           <ProductAttributes
             id={id}
             attributes={attributes}
@@ -72,20 +56,18 @@ class Product extends Component {
             disabled={!inStock}
           />
           <h5>Price:</h5>
-          <p className="price">
-            {currentPrice && currentPrice.currency.symbol}
-            {currentPrice && currentPrice.amount.toFixed(2)}
-          </p>
+          <Price currentPrice={currentPrice} inStock={inStock} />
           <button
             onClick={() => {
               this.props.addToCart({ product, selectedAttributes });
             }}
+            disabled={!inStock}
           >
-            Add To Cart
+            {inStock ? "Add To Cart" : "Out Of Stock"}
           </button>
-          <div className="description-container">{parse(`${description}`)}</div>
+          <div className="description">{parse(`${description}`)}</div>
         </div>
-      </div>
+      </StyledProduct>
     );
   }
 }
@@ -100,7 +82,6 @@ const mapDispatchToProps = () => {
   return {
     getSingleProduct,
     clearProductState,
-    setMainImg,
     addToCart,
   };
 };
