@@ -23,28 +23,28 @@ class MiniCart extends Component {
           background={"var(--color-transparentGrey)"}
         >
           <StyledMiniCart onClick={e => e.stopPropagation()}>
-            <div>
+            <div className="mini-cart-header">
               <h2>My Bag,</h2>
               <p>{quantity} items</p>
             </div>
-            <div>
+            <div className="mini-cart-items">
               {cartItems.map(cartItem => (
                 <CartItem key={cartItem.id} cartItem={cartItem} />
               ))}
             </div>
-            <div className="cart-total">
+            <div className="mini-cart-total">
               <h4>Total</h4>
               <p>
                 {currentCurrency.symbol}
                 {total.toFixed(2)}
               </p>
             </div>
-            <div>
+            <div className="mini-cart-btns">
               <Link to="cart" onClick={() => this.props.closeMiniCart()}>
                 <button>View Bag</button>
               </Link>
               <Link to="404" onClick={() => this.props.closeMiniCart()}>
-                <button>Check Out</button>
+                <button className="check-out-btn">Check Out</button>
               </Link>
             </div>
           </StyledMiniCart>

@@ -7,6 +7,10 @@ import CartItem from "../CartItem";
 import StyledCart from "../styles/Cart.styled";
 
 class Cart extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const { cartItems, quantity, total, tax, currentCurrency } = this.props;
 

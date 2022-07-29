@@ -20,6 +20,10 @@ const StyledModalCurrencies = styled.ul`
     background: var(--color-lightGrey);
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    margin: 0rem 1.4rem;
+  }
 `;
 
 export default StyledModalCurrencies;

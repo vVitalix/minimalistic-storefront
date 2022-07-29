@@ -7,6 +7,8 @@ import ProductAttributes from "../ProductAttributes";
 import ProductDetails from "../ProductDetails";
 import GalleryCarousel from "./GalleryCarousel";
 import { PlusSquareIcon, MinusSquareIcon } from "../Icons/ShoppingCartIcons";
+//STYLES
+import StyledCartItem from "../styles/CartItem.styled";
 
 class CartItem extends Component {
   render() {
@@ -16,39 +18,44 @@ class CartItem extends Component {
     const currentPrice = prices.find(price => price.currency.label === currentCurrency.label);
 
     return (
-      <div>
-        <ProductDetails
-          id={selectedAttributes.productId}
-          name={name}
-          brand={brand}
-          inStock={inStock}
-          currentPrice={currentPrice}
-        />
-        <ProductAttributes
-          id={id}
-          attributes={attributes}
-          selectedAttributes={selectedAttributes}
-          setAttributeFromPlp={"disabled"}
-        />
+      <StyledCartItem className="cart-item">
         <div>
-          <button onClick={() => this.props.increase({ id })}>
-            <PlusSquareIcon />
-          </button>
-          <p>{qty}</p>
-          <button
-            onClick={() => {
-              if (qty === 1) {
-                this.props.removeItem({ id });
-                return;
-              }
-              this.props.decrease({ id });
-            }}
-          >
-            <MinusSquareIcon />
-          </button>
+          <ProductDetails
+            id={selectedAttributes.productId}
+            name={name}
+            brand={brand}
+            inStock={inStock}
+            currentPrice={currentPrice}
+          />
+          <ProductAttributes
+            id={id}
+            attributes={attributes}
+            selectedAttributes={selectedAttributes}
+            setAttributeFromPlp={false}
+            disabled={inStock}
+          />
         </div>
-        <GalleryCarousel gallery={gallery} name={name} />
-      </div>
+        <div className="cart-item-controls">
+          <div className="quantity">
+            <button onClick={() => this.props.increase({ id })}>
+              <PlusSquareIcon />
+            </button>
+            <p>{qty}</p>
+            <button
+              onClick={() => {
+                if (qty === 1) {
+                  this.props.removeItem({ id });
+                  return;
+                }
+                this.props.decrease({ id });
+              }}
+            >
+              <MinusSquareIcon />
+            </button>
+          </div>
+          <GalleryCarousel gallery={gallery} name={name} />
+        </div>
+      </StyledCartItem>
     );
   }
 }

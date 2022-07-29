@@ -20,6 +20,18 @@ const StyledProductList = styled.section`
     grid-column-gap: 2.5rem;
     grid-row-gap: 6.25rem;
   }
+
+  @media (max-width: 768px) and (min-width: 581px) {
+    padding: 5rem 3rem;
+  }
+
+  @media (max-width: 580px) {
+    padding: 5rem 1rem;
+
+    & > h1 {
+      text-align: center;
+    }
+  }
 `;
 
 export default StyledProductList;

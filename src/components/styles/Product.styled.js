@@ -60,8 +60,72 @@ const StyledProduct = styled.section`
         font-weight: 400;
       }
 
+      h1,
+      h3 {
+        font-weight: 600;
+        margin-top: 0.5rem;
+      }
+
       li {
         list-style: initial;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) and (min-width: 1001px) {
+    .info-container {
+      margin-left: 2rem;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    padding: 5rem 3rem;
+    flex-direction: column;
+    align-items: center;
+
+    .gallery {
+      max-width: none;
+      width: 26rem;
+      flex-direction: column-reverse;
+
+      .main-img-container {
+        height: 26rem;
+        overflow: visible;
+
+        img {
+          height: inherit;
+          object-fit: contain;
+        }
+      }
+
+      .small-imgs-container {
+        height: 5rem;
+        margin-top: 1rem;
+        margin-right: 0;
+        flex-direction: row;
+        overflow: hidden;
+        overflow-x: auto;
+
+        div {
+          margin-bottom: 0;
+          margin-right: 1rem;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .info-container {
+      margin-left: 0rem;
+      margin-top: 2rem;
+
+      .title h2,
+      .title h3 {
+        margin-right: 0rem;
+        text-align: center;
       }
     }
   }

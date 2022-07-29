@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 //COMPONENTS
 import { ChevronLeftIcon, ChevronRightIcon } from "../Icons/ShoppingCartIcons";
+//STYLES
+import StyledGalleryCarousel from "../styles/GalleryCarousel.styled";
 
 class GalleryCarousel extends Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class GalleryCarousel extends Component {
     const { gallery, name } = this.props;
 
     return (
-      <div className="gallery-carousel-container">
+      <StyledGalleryCarousel className="gallery-carousel-container">
         <div className="gallery-carousel">
           {gallery.map((img, imgIndex) => {
             let position = "nextSlide";
@@ -45,14 +47,14 @@ class GalleryCarousel extends Component {
 
             return (
               <div key={imgIndex} className={`img-container ${position}`}>
-                <img height="288" src={img} alt={`${name} gallery img`} />
+                <img src={img} alt={`${name} gallery img ${imgIndex + 1}`} />
               </div>
             );
           })}
         </div>
 
         {gallery.length > 1 && (
-          <div className="gallery-carousel-controls">
+          <div className="carousel-btns">
             <button onClick={() => this.setState({ index: this.state.index - 1 })}>
               <ChevronLeftIcon />
             </button>
@@ -61,7 +63,7 @@ class GalleryCarousel extends Component {
             </button>
           </div>
         )}
-      </div>
+      </StyledGalleryCarousel>
     );
   }
 }

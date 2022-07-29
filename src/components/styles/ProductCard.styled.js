@@ -99,11 +99,11 @@ const StyledProductCard = styled.article`
     transition: 0.5s ease all;
     cursor: pointer;
 
-    & svg {
+    svg {
       width: 1.5rem;
       height: 1.5rem;
 
-      & path {
+      path {
         fill: var(--color-white);
       }
     }
