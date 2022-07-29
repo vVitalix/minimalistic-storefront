@@ -8,21 +8,27 @@ import Cart from "./components/Cart";
 import PageNotFound from "./components/PageNotFound";
 
 class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Main />}>
-            <Route index element={<ProductList />} />
-            <Route path="category/:categoryName" element={<ProductList />} />
-            <Route path="product/:productId" element={<Product />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    );
-  }
+    render() {
+        return (
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Main />}>
+                        <Route index element={<ProductList />} />
+                        <Route
+                            path="category/:categoryName"
+                            element={<ProductList />}
+                        />
+                        <Route
+                            path="product/:productId"
+                            element={<Product />}
+                        />
+                        <Route path="cart" element={<Cart />} />
+                        <Route path="*" element={<PageNotFound />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;

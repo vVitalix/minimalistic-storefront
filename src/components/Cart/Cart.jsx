@@ -7,59 +7,59 @@ import CartItem from "../CartItem";
 import StyledCart from "../styles/Cart.styled";
 
 class Cart extends Component {
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
 
-  render() {
-    const { cartItems, quantity, total, tax, currentCurrency } = this.props;
+    render() {
+        const { cartItems, quantity, total, tax, currentCurrency } = this.props;
 
-    return (
-      <StyledCart>
-        <h1>Cart</h1>
-        <div className="cart-items">
-          {cartItems.map(cartItem => (
-            <CartItem key={cartItem.id} cartItem={cartItem} />
-          ))}
-        </div>
-        <div className="cart-total">
-          <div>
-            <h4>Tax 21%:</h4>
-            <p>
-              {currentCurrency.symbol}
-              {tax.toFixed(2)}
-            </p>
-          </div>
-          <div>
-            <h4>Quantity:</h4>
-            <p>{quantity}</p>
-          </div>
-          <div>
-            <h4 className="total">Total:</h4>
-            <p>
-              {currentCurrency.symbol}
-              {total.toFixed(2)}
-            </p>
-          </div>
-          {cartItems.length > 0 && (
-            <Link to="/404">
-              <button>Order</button>
-            </Link>
-          )}
-        </div>
-      </StyledCart>
-    );
-  }
+        return (
+            <StyledCart>
+                <h1>Cart</h1>
+                <div className="cart-items">
+                    {cartItems.map(cartItem => (
+                        <CartItem key={cartItem.id} cartItem={cartItem} />
+                    ))}
+                </div>
+                <div className="cart-total">
+                    <div>
+                        <h4>Tax 21%:</h4>
+                        <p>
+                            {currentCurrency.symbol}
+                            {tax.toFixed(2)}
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Quantity:</h4>
+                        <p>{quantity}</p>
+                    </div>
+                    <div>
+                        <h4 className="total">Total:</h4>
+                        <p>
+                            {currentCurrency.symbol}
+                            {total.toFixed(2)}
+                        </p>
+                    </div>
+                    {cartItems.length > 0 && (
+                        <Link to="/404">
+                            <button>Order</button>
+                        </Link>
+                    )}
+                </div>
+            </StyledCart>
+        );
+    }
 }
 
 const mapStateToProps = state => {
-  const { cartItems, quantity, total, tax } = state.cart;
-  const { currentCurrency } = state.modalCurrencies;
-  return { cartItems, quantity, total, tax, currentCurrency };
+    const { cartItems, quantity, total, tax } = state.cart;
+    const { currentCurrency } = state.modalCurrencies;
+    return { cartItems, quantity, total, tax, currentCurrency };
 };
 
 const mapDispatchToProps = () => {
-  return {};
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(Cart);

@@ -8,7 +8,6 @@ import {
     openModalCurrencies,
 } from "../../features/modalCurrencies/modalCurrenciesSlice";
 import { openMiniCart } from "../../features/cart/cartSlice";
-import { getProducts } from "../../features/productList/productListSlice";
 //COMPONENTS
 import { LogoIcon, CartIcon, ChevronDownIcon } from "../Icons/NavbarIcons";
 //STYLES
@@ -21,13 +20,7 @@ class Header extends Component {
     }
 
     render() {
-        const {
-            categories,
-            defaultCategory,
-            currentCurrency,
-            isOpen,
-            quantity,
-        } = this.props;
+        const { categories, currentCurrency, isOpen, quantity } = this.props;
 
         return (
             <StyledHeader rotate={isOpen ? "rotate(180deg)" : "rotate(0deg)"}>
@@ -50,12 +43,7 @@ class Header extends Component {
                         })}
                     </ul>
                     <div className="logo">
-                        <Link
-                            to="/"
-                            // onClick={() => {
-                            //   this.props.getProducts(defaultCategory);
-                            // }}
-                        >
+                        <Link to="/">
                             <LogoIcon />
                         </Link>
                     </div>
@@ -90,17 +78,16 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => {
-    const { categories, defaultCategory } = state.navbar;
+    const { categories } = state.navbar;
     const { currentCurrency, isOpen } = state.modalCurrencies;
     const { quantity } = state.cart;
-    return { categories, defaultCategory, currentCurrency, isOpen, quantity };
+    return { categories, currentCurrency, isOpen, quantity };
 };
 
 const mapDispatchToProps = () => {
     return {
         getCategories,
         getCurrencies,
-        getProducts,
         openModalCurrencies,
         openMiniCart,
     };

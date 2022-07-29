@@ -4,12 +4,13 @@ import modalCurrenciesReducer from "./features/modalCurrencies/modalCurrenciesSl
 import productListReducer from "./features/productList/productListSlice";
 import productReducer from "./features/product/productSlice";
 import cartReducer from "./features/cart/cartSlice";
+
 export const store = configureStore({
-  reducer: {
-    navbar: navbarReducer,
-    modalCurrencies: modalCurrenciesReducer,
-    productList: productListReducer,
-    product: productReducer,
-    cart: cartReducer,
-  },
+    reducer: {
+        navbar: navbarReducer,
+        modalCurrencies: modalCurrenciesReducer,
+        productList: productListReducer,
+        product: productReducer,
+        cart: cartReducer,
+    },
 });

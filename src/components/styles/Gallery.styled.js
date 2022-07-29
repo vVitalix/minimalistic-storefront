@@ -1,48 +1,48 @@
 import styled from "styled-components";
 
 const StyledGallery = styled.div`
-  max-width: 45.125rem;
-  height: 32rem;
-  display: flex;
-  flex-grow: 1;
-
-  .small-imgs-container {
-    min-width: 5rem;
-    height: 100%;
-    margin-right: 2rem;
+    max-width: 45.125rem;
+    height: 32rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    overflow-y: auto;
-    scrollbar-width: thin;
+    flex-grow: 1;
 
-    div {
-      height: 5rem;
-      width: 5rem;
-      margin-bottom: 1rem;
-
-      &:last-child {
-        margin-bottom: 0rem;
-      }
-
-      img {
-        width: inherit;
+    .small-imgs-container {
+        min-width: 5rem;
         height: 100%;
-        object-fit: cover;
-        object-position: top center;
-      }
-    }
-  }
+        margin-right: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        overflow-y: auto;
+        scrollbar-width: thin;
 
-  .main-img-container {
-    width: 100%;
-    overflow: hidden;
+        div {
+            height: 5rem;
+            width: 5rem;
+            margin-bottom: 1rem;
 
-    img {
-      width: inherit;
+            &:last-child {
+                margin-bottom: 0rem;
+            }
+
+            img {
+                width: inherit;
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+            }
+        }
     }
-  }
+
+    .main-img-container {
+        width: 100%;
+        overflow: hidden;
+
+        img {
+            width: inherit;
+        }
+    }
 `;
 
 export default StyledGallery;

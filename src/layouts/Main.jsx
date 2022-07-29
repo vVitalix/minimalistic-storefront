@@ -9,36 +9,39 @@ import ModalCurrencies from "../components/ModalCurrencies";
 import MiniCart from "../components/MiniCart";
 
 class Main extends Component {
-  componentDidUpdate(prevProps) {
-    const { cartItems, currentCurrency } = this.props;
+    componentDidUpdate(prevProps) {
+        const { cartItems, currentCurrency } = this.props;
 
-    if (cartItems !== prevProps.cartItems || currentCurrency !== prevProps.currentCurrency) {
-      this.props.calculateTotals({ currentCurrency });
+        if (
+            cartItems !== prevProps.cartItems ||
+            currentCurrency !== prevProps.currentCurrency
+        ) {
+            this.props.calculateTotals({ currentCurrency });
+        }
     }
-  }
 
-  render() {
-    const { isOpen, miniCartIsOpen } = this.props;
+    render() {
+        const { isOpen, miniCartIsOpen } = this.props;
 
-    return (
-      <div>
-        <Header />
-        {isOpen && <ModalCurrencies />}
-        {miniCartIsOpen && <MiniCart />}
-        <Outlet />
-      </div>
-    );
-  }
+        return (
+            <div>
+                <Header />
+                {isOpen && <ModalCurrencies />}
+                {miniCartIsOpen && <MiniCart />}
+                <Outlet />
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => {
-  const { cartItems, miniCartIsOpen } = state.cart;
-  const { currentCurrency, isOpen } = state.modalCurrencies;
-  return { cartItems, miniCartIsOpen, currentCurrency, isOpen };
+    const { cartItems, miniCartIsOpen } = state.cart;
+    const { currentCurrency, isOpen } = state.modalCurrencies;
+    return { cartItems, miniCartIsOpen, currentCurrency, isOpen };
 };
 
 const mapDispatchToProps = () => {
-  return { calculateTotals };
+    return { calculateTotals };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(Main);
