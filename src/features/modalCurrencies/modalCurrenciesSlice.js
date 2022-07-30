@@ -9,8 +9,8 @@ const queryCurrencies = new Query("currencies", true)
 
 const initialState = {
     currencies: [],
-    currentCurrency: "",
-    currenciesAreLoading: false,
+    currentCurrency: {},
+    currenciesAreLoading: true,
     isOpen: false,
 };
 

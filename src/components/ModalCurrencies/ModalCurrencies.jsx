@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 //REDUCERS
 import {
     setCurrency,
@@ -56,6 +57,10 @@ const mapDispatchToProps = () => {
         setCurrency,
         closeModalCurrencies,
     };
+};
+
+ModalCurrencies.propTypes = {
+    currencies: PropTypes.array.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(ModalCurrencies);

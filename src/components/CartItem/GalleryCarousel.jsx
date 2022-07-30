@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 //COMPONENTS
 import { ChevronLeftIcon, ChevronRightIcon } from "../Icons/CartItemIcons";
 //STYLES
@@ -83,5 +84,10 @@ class GalleryCarousel extends Component {
         );
     }
 }
+
+GalleryCarousel.propTypes = {
+    gallery: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired,
+};
 
 export default GalleryCarousel;

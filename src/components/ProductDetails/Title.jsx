@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 //STYLES
 import StyledTitle from "../styles/Title.styled";
 
@@ -17,5 +18,11 @@ class Title extends Component {
         );
     }
 }
+
+Title.propTypes = {
+    name: PropTypes.string.isRequired,
+    brand: PropTypes.string.isRequired,
+    inStock: PropTypes.bool.isRequired,
+};
 
 export default Title;

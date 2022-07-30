@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 //REDUCERS
 import {
     getProducts,
@@ -94,6 +95,13 @@ const mapDispatchToProps = () => {
         getProducts,
         clearProductListState,
     };
+};
+
+ProductList.propTypes = {
+    products: PropTypes.array.isRequired,
+    productsAreLoading: PropTypes.bool.isRequired,
+    productsNotFound: PropTypes.bool.isRequired,
+    defaultCategory: PropTypes.string.isRequired,
 };
 
 export default connect(

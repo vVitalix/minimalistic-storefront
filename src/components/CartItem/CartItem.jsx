@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 //REDUCERS
 import { increase, decrease, removeItem } from "../../features/cart/cartSlice";
 //COMPONENTS
@@ -72,6 +73,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = () => {
     return { increase, decrease, removeItem };
+};
+
+CartItem.propTypes = {
+    cartItem: PropTypes.object.isRequired,
+    currentCurrency: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(CartItem);

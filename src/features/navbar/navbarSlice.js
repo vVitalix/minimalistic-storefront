@@ -10,7 +10,7 @@ const queryCategories = new Query("categories", true).addField(
 const initialState = {
     categories: [],
     defaultCategory: "",
-    categoriesAreLoading: false,
+    categoriesAreLoading: true,
 };
 
 export const getCategories = createAsyncThunk(

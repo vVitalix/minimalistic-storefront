@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 //REDUCERS
 import { setMainImg } from "../../features/product/productSlice";
 //STYLES
@@ -44,6 +45,12 @@ const mapDispatchToProps = () => {
     return {
         setMainImg,
     };
+};
+
+Gallery.propTypes = {
+    name: PropTypes.string.isRequired,
+    gallery: PropTypes.array.isRequired,
+    mainImgIndex: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(Gallery);

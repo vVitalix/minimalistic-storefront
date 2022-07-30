@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 //REDUCERS
 import { setAttributePlp } from "../../features/productList/productListSlice";
 import { setAttributePdp } from "../../features/product/productSlice";
@@ -120,6 +121,14 @@ const mapDispatchToProps = () => {
         setAttributePlp,
         setAttributePdp,
     };
+};
+
+ProductAttributes.propTypes = {
+    id: PropTypes.string.isRequired,
+    attributes: PropTypes.array.isRequired,
+    selectedAttributes: PropTypes.object.isRequired,
+    setAttributeFromPlp: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
 };
 
 export default connect(

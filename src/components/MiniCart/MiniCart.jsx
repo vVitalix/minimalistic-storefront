@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 //REDUCERS
 import { closeMiniCart } from "../../features/cart/cartSlice";
 //COMPONENTS
@@ -76,6 +77,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = () => {
     return { closeMiniCart };
+};
+
+MiniCart.propTypes = {
+    cartItems: PropTypes.array.isRequired,
+    quantity: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+    currentCurrency: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(MiniCart);

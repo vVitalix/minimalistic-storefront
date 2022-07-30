@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import parse from "html-react-parser";
+import PropTypes from "prop-types";
 //REDUCERS
 import {
     getSingleProduct,
@@ -155,6 +156,15 @@ const mapDispatchToProps = () => {
         clearProductState,
         addToCart,
     };
+};
+
+Product.propTypes = {
+    product: PropTypes.object.isRequired,
+    selectedAttributes: PropTypes.object.isRequired,
+    mainImgIndex: PropTypes.number.isRequired,
+    productIsLoading: PropTypes.bool.isRequired,
+    productNotFound: PropTypes.bool.isRequired,
+    currentCurrency: PropTypes.object.isRequired,
 };
 
 export default connect(

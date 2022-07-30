@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 //REDUCERS
 import { addToCart } from "../../features/cart/cartSlice";
 //COMPONENTS
@@ -85,6 +86,12 @@ const mapDispatchToProps = () => {
     return {
         addToCart,
     };
+};
+
+ProductCard.propTypes = {
+    product: PropTypes.object.isRequired,
+    selectedAttributesList: PropTypes.array.isRequired,
+    currentCurrency: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(ProductCard);

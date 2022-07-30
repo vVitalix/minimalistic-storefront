@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 //REDUCERS
 import { getCategories } from "../../features/navbar/navbarSlice";
 import {
@@ -91,6 +92,13 @@ const mapDispatchToProps = () => {
         openModalCurrencies,
         openMiniCart,
     };
+};
+
+Header.propTypes = {
+    categories: PropTypes.array.isRequired,
+    currentCurrency: PropTypes.object.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    quantity: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps())(Header);

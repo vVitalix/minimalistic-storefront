@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 //STYLES
 import StyledPrice from "../styles/Price.styled";
 
@@ -17,5 +18,10 @@ class Price extends Component {
         );
     }
 }
+
+Price.propTypes = {
+    currentPrice: PropTypes.object.isRequired,
+    inStock: PropTypes.bool.isRequired,
+};
 
 export default Price;
