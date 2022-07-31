@@ -17,4 +17,4 @@ GraphQL client:
 
 ### Preview
 
-<img src="/preview-minimalistic-storefront" />
+<img src="./preview-minimalistic-storefront" />
