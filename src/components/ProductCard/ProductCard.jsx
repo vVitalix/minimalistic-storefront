@@ -18,9 +18,12 @@ class ProductCard extends Component {
 
         const { product, selectedAttributesList, currentCurrency } = this.props;
 
-        const currentPrice = prices.find(
-            price => price.currency.label === currentCurrency.label
-        );
+        const currentPrice =
+            prices &&
+            prices.find(
+                price => price.currency.label === currentCurrency.label
+            );
+
         const selectedAttributes = selectedAttributesList.find(
             attributes => attributes.productId === id
         );

@@ -47,6 +47,8 @@ const modalCurrenciesSlice = createSlice({
         [getCurrencies.fulfilled]: (state, { payload }) => {
             state.currenciesAreLoading = false;
             state.currencies = payload.currencies;
+
+            if (state.currentCurrency.label) return;
             state.currentCurrency = payload.currencies[0];
         },
         [getCurrencies.rejected]: (state, action) => {
