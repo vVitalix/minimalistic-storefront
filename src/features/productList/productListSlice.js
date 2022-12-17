@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { client, Query, Field } from "@tilework/opus";
 
-client.setEndpoint("http://localhost:4000");
+client.setEndpoint(process.env.REACT_APP_API_URL || "http://localhost:4000");
 
 const getQuery = category => {
     const queryProducts = new Query("category", true)
